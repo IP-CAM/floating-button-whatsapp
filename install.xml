@@ -2,7 +2,7 @@
 <modification>
 	<name>Floating Button for Whatsapp </name>
 	<code>floating-button-whatsapp</code>
-	<version>1.0</version>
+	<version>1.0.1</version>
 	<author>Naamã Lima</author>
     <link>https://www.linkedin.com/in/naamaslima/</link>
 	
@@ -178,7 +178,8 @@ $_['text_whatsapp_number']         = 'Número do Whatsapp';
 			<add position="before">
 				<![CDATA[
 		if ($this->config->get('config_whatsapp_status') && !empty($this->config->get('config_whatsapp_number'))){
-			$data['whatsapp_number']   = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $this->config->get('config_whatsapp_number')), '-'));
+			$data['whatsapp_number']   = trim(preg_replace('/[^A-Za-z0-9-]+/', '', $this->config->get('config_whatsapp_number')), '-');
+			$data['whatsapp_number']   = str_replace("-", "", $data['whatsapp_number']);
 			$data['whatsapp_position'] = $this->config->get('config_whatsapp_position');
 			$data['whatsapp_title'] = $this->config->get('config_whatsapp_title');
 		}
