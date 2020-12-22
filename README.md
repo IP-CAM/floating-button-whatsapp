@@ -17,6 +17,9 @@ As opções disponíveis estão descritas abaixo.
 - Número: Define o número da conta do whatsapp.
 - Título do botão: Define o título do botão (visível ao apontar o cursor no botão).
 - Posição do botão: Define qual a posição que o botão flutuante será exibido na loja.
+- Texto inicial: Define o texto inicial da conversa;
+- Esconder na tela de login: Habilita função para esconder o botão na tela de login;
+- Cor do botão: Define a cor do botão;
 
 ### Dúvidas
 Qualquer dúvida ou sugestão, por favor entrar em contato através do email naamalima32@gmail.com. Obrigado!

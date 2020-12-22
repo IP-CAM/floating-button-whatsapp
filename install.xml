@@ -2,7 +2,7 @@
 <modification>
 	<name>Floating Button for Whatsapp </name>
 	<code>floating-button-whatsapp</code>
-	<version>1.0.1</version>
+	<version>1.1.0</version>
 	<author>Naamã Lima</author>
     <link>https://www.linkedin.com/in/naamaslima/</link>
 	
@@ -17,6 +17,9 @@ $_['entry_whatsapp_position']      = 'Button position';
 $_['entry_whatsapp_number']        = 'Number';
 $_['entry_whatsapp_status']        = 'Status';
 $_['entry_whatsapp_title']         = 'Button title';
+$_['entry_whatsapp_text']          = 'Initial text';
+$_['entry_whatsapp_pagesoff']      = 'Hide on login page';
+$_['entry_whatsapp_color']         = 'Color';
 				]]>
 			</add>
 		</operation>
@@ -29,10 +32,14 @@ $_['entry_whatsapp_title']         = 'Button title';
 				<![CDATA[
 $_['text_whatsapp_right']          = 'Right';
 $_['text_whatsapp_left']           = 'Left';
-$_['text_whatsapp_title']          = 'Button title';
+$_['text_whatsapp_title']          = 'Ex: Contact us';
 $_['text_whatsapp_status_on']      = 'Enable';
 $_['text_whatsapp_status_off']     = 'Disable';
 $_['text_whatsapp_number']         = 'Number';
+$_['text_whatsapp_text']           = 'Ex: Hi, I\'m contacting you through the website';
+$_['text_whatsapp_pagesoff_on']    = 'Enable';
+$_['text_whatsapp_pagesoff_off']   = 'Disable';
+$_['text_whatsapp_color']   	   = 'RGB';
 				]]>
 			</add>
 		</operation>
@@ -49,6 +56,10 @@ $_['entry_whatsapp_position']      = 'Posição do botão';
 $_['entry_whatsapp_number']        = 'Número';
 $_['entry_whatsapp_status']        = 'Situação';
 $_['entry_whatsapp_title']         = 'Título do botão';
+$_['entry_whatsapp_text']          = 'Texto inicial';
+$_['entry_whatsapp_pagesoff']      = 'Esconder na tela de login';
+$_['entry_whatsapp_color']         = 'Cor do botão';
+
 				]]>
 			</add>
 		</operation>
@@ -61,10 +72,14 @@ $_['entry_whatsapp_title']         = 'Título do botão';
 				<![CDATA[
 $_['text_whatsapp_right']          = 'Direito';
 $_['text_whatsapp_left']           = 'Esquerdo';
-$_['text_whatsapp_title']          = 'Título do botão';
+$_['text_whatsapp_title']          = 'Ex: Fale Conosco';
 $_['text_whatsapp_status_on']      = 'Habilitado';
 $_['text_whatsapp_status_off']     = 'Desabilitado';
 $_['text_whatsapp_number']         = 'Número do Whatsapp';
+$_['text_whatsapp_text']           = 'Ex: Oi, estou entrando em contato através do site';
+$_['text_whatsapp_pagesoff_on']    = 'Habilitado';
+$_['text_whatsapp_pagesoff_off']   = 'Desabilitado';
+$_['text_whatsapp_color']   	   = 'RGB';
 				]]>
 			</add>
 		</operation>
@@ -110,6 +125,12 @@ $_['text_whatsapp_number']         = 'Número do Whatsapp';
 			</div>
 			</div>
 			<div class="form-group">
+			<label class="col-sm-2 control-label" for="input-whatsapp-text">{{ entry_whatsapp_text }}</label>
+			<div class="col-sm-10">
+				<input type="text" name="config_whatsapp_text" value="{{ config_whatsapp_text }}" placeholder="{{ entry_whatsapp_text }}" id="input-whatsapp-text" class="form-control" />
+			</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-2 control-label">{{ entry_whatsapp_position }}</label>
 				<div class="col-sm-10">
 				<label class="radio-inline"> {% if config_whatsapp_position == 'left' or config_whatsapp_position is null  %}
@@ -128,6 +149,29 @@ $_['text_whatsapp_number']         = 'Número do Whatsapp';
 					{% endif %} </label>
 				</div>
 			</div>
+			<div class="form-group">
+			<label class="col-sm-2 control-label" for="input-whatsapp_pagesoff">{{ entry_whatsapp_pagesoff }}</label>
+			<div class="col-sm-10">
+				<select name="config_whatsapp_pagesoff" id="input-whatsapp_pagesoff" class="form-control">
+				<option value="1" {% if config_whatsapp_pagesoff == 1 %} selected="selected" {% endif %}>{{ text_whatsapp_pagesoff_on }}</option>                   
+				<option value="0" {% if config_whatsapp_pagesoff == 0 %} selected="selected" {% endif %}>{{ text_whatsapp_pagesoff_off }}</option>
+				</select>
+			</div>
+			</div>
+			<div class="form-group">
+			<label class="col-sm-2 control-label" for="input-whatsapp_color">Cor do botão</label>
+			<div class="col-sm-6">
+				<div class=" input-group colorpicker-component">
+					<input type="text" name="config_whatsapp_color" value="{{ config_whatsapp_color ?: '#01e675'}}" placeholder="Selecione uma cor" id="input-whatsapp_color" class="form-control" />
+					<span class="input-group-addon"><i></i></span>
+				</div>
+			</div>
+			</div>
+			<script>
+				$(function() {
+				$('.colorpicker-component').colorpicker();
+				});
+          	</script>
 		</div>
 				]]>
 			</add>
@@ -165,6 +209,27 @@ $_['text_whatsapp_number']         = 'Número do Whatsapp';
 		} else {
 			$data['config_whatsapp_number'] = $this->config->get('config_whatsapp_number');
 		}
+
+		if (isset($this->request->post['config_whatsapp_text'])) {
+			$data['config_whatsapp_text'] = $this->request->post['config_whatsapp_text'];
+		} else {
+			$data['config_whatsapp_text'] = $this->config->get('config_whatsapp_text');
+		}
+
+		if (isset($this->request->post['config_whatsapp_pagesoff'])) {
+			$data['config_whatsapp_pagesoff'] = $this->request->post['config_whatsapp_pagesoff'];
+		} else {
+			$data['config_whatsapp_pagesoff'] = $this->config->get('config_whatsapp_pagesoff');
+		}
+
+		if (isset($this->request->post['config_whatsapp_color'])) {
+			$data['config_whatsapp_color'] = $this->request->post['config_whatsapp_color'];
+		} else {
+			$data['config_whatsapp_color'] = $this->config->get('config_whatsapp_color');
+		}
+
+		$this->document->addScript('view/javascript/colorpicker/colorpicker.min.js');
+		$this->document->addLink('view/javascript/colorpicker/colorpicker.min.css', 'stylesheet');
 				]]>
 			</add>
 		</operation>
@@ -178,10 +243,24 @@ $_['text_whatsapp_number']         = 'Número do Whatsapp';
 			<add position="before">
 				<![CDATA[
 		if ($this->config->get('config_whatsapp_status') && !empty($this->config->get('config_whatsapp_number'))){
-			$data['whatsapp_number']   = trim(preg_replace('/[^A-Za-z0-9-]+/', '', $this->config->get('config_whatsapp_number')), '-');
-			$data['whatsapp_number']   = str_replace("-", "", $data['whatsapp_number']);
-			$data['whatsapp_position'] = $this->config->get('config_whatsapp_position');
-			$data['whatsapp_title'] = $this->config->get('config_whatsapp_title');
+			$match = true;
+			if (!empty($this->request->get['route']) && $this->config->get('config_whatsapp_pagesoff')) {
+				$skip = ['login','register'];
+				foreach ($skip as $s) {
+					if (strpos($this->request->get['route'], $s) !== false) {
+						$match = false;
+						break;
+					}
+				}
+			}	
+			if($match){
+				$data['whatsapp_number']   = trim(preg_replace('/[^A-Za-z0-9-]+/', '', $this->config->get('config_whatsapp_number')), '-');
+				$data['whatsapp_number']   = str_replace("-", "", $data['whatsapp_number']);
+				$data['whatsapp_position'] = $this->config->get('config_whatsapp_position');
+				$data['whatsapp_title'] = $this->config->get('config_whatsapp_title');
+				$data['whatsapp_text'] = $this->config->get('config_whatsapp_text');
+				$data['whatsapp_color'] = $this->config->get('config_whatsapp_color');
+			}
 		}
 		]]>
 			</add>
@@ -197,7 +276,7 @@ $_['text_whatsapp_number']         = 'Número do Whatsapp';
 				<![CDATA[
 {% if whatsapp_number %}
   <div id="btnwhatsapp" style="position: fixed; z-index: 999;{{whatsapp_position}}: 20px; bottom: 20px;">
-      <a href="https://wa.me/{{ whatsapp_number }}" title="{{whatsapp_title}}" target="_blank" style="width: 60px; height: 60px;background-color: #01e675;color: #fff;border-radius: 35px;-webkit-border-radius: 35px;-moz-border-radius: 35px;display: table-cell;vertical-align: middle;text-align: center;box-shadow: 0 0 25px rgba(0,0,0,0.4);-webkit-box-shadow: 0 0 25px rgba(0,0,0,0.4);"><i style="font-size: 2.5em !important;" class="fa fa-whatsapp"></i></a>
+      <a href="https://wa.me/{{ whatsapp_number }}/?text={{ whatsapp_text ?: '' }}" title="{{whatsapp_title}}" target="_blank" style="width: 60px; height: 60px;background-color: {{ whatsapp_color }};color: #fff;border-radius: 35px;-webkit-border-radius: 35px;-moz-border-radius: 35px;display: table-cell;vertical-align: middle;text-align: center;box-shadow: 0 0 25px rgba(0,0,0,0.4);-webkit-box-shadow: 0 0 25px rgba(0,0,0,0.4);"><i style="font-size: 2.5em !important;" class="fa fa-whatsapp"></i></a>
   </div>
 {% endif %}
 				]]>
