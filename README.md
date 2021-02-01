@@ -1,26 +1,25 @@
 ## OCMOD Floating Button for Whatsapp
-Essa é uma modificação para OpenCart desenvolvida no formato ocmod, suportado pelas versões 3.0.x e os requisitos são os mesmo da respectiva versão da plataforma.
+This is a modification to OpenCart developed in ocmod format, supported by versions 3.0.x and the requirements are the same as the respective version of the platform.
 
-Adicione o WhatsApp messenger em sua loja para estabelecer comunicação com os clientes.
+Add WhatsApp messenger to your store to establish communication with customers.
 
-### Instalação
+### Installation
 
-1. Baixe o [arquivo](https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=39236) e instale a modificação pelo admin (Extensões -> Instalador).
-2. Navegue para Extensão -> Modificações e clique no botão Atualizar no canto superior direito.
+1. Download the [file] (https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=39236) and install the modification by the admin (Extensions -> Installer).
+2. Navigate to Extension -> Modifications and click the Update button in the upper right corner.
 
-### Configuração
+### Configuration
 
-Para acessar e configurar o Whatsapp acesse o menu Configurações -> Gerenciar Lojas -> Editar. Acesse a aba "Whatsapp".
+To access and configure Whatsapp, access the Settings menu -> Manage Stores -> Edit. Access the "Whatsapp" tab.
 
-As opções disponíveis estão descritas abaixo.
-- Status: habilita e desabilita o botão.
-- Número: Define o número da conta do whatsapp.
-- Título do botão: Define o título do botão (visível ao apontar o cursor no botão).
-- Posição do botão: Define qual a posição que o botão flutuante será exibido na loja.
-- Texto inicial: Define o texto inicial da conversa;
-- Esconder na tela de login: Habilita função para esconder o botão na tela de login;
-- Cor do botão: Define a cor do botão;
+The available options are described below.
+- Status: enables and disables the button.
+- Number: Sets the whatsapp account number.
+- Button title: Defines the button title (visible when the cursor is pointed at the button).
+- Button position: Defines what position the floating button will be displayed in the store.
+- Initial text: Defines the initial text of the conversation;
+- Hide on the login screen: Enables function to hide the button on the login screen;
+- Button color: Defines the color of the button;
 
-### Dúvidas
-Qualquer dúvida ou sugestão, por favor entrar em contato através do email naamalima32@gmail.com. Obrigado!
-
+### Doubts
+Any questions or suggestions, please get in touch via email naamalima32@gmail.com. Thank you!
